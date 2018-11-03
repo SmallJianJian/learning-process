@@ -17,7 +17,7 @@
 |
 |默认:true
  -->
-<interactiveModel>true</interactiveModel>
+<interactiveMode>true</interactiveMode>
 
 <!--<offline>
 |确定maven在执行构建时是否应该尝试连接到网络。
