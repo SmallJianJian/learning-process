@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+ <!-- localRepository
+   | 本地仓库文件夹路径：用来存储所有项目依赖关系（jar包和其他文件，这些文件被下载到本地）
+   | 默认位置: ${user.home}/.m2/repository
+  -->
+<localRepository>D:\Tool\maven\local-storage</localRepository>
+
+
+<!--<interactiveModel>
+|交互模式：这将决定maven在需要输入时是否提示您。如果设为false，
+| maven将使用一个合理的默认值，可能基于其他设置
+|所讨论的参数。
+|
+|默认:true
+ -->
+<interactiveModel>true</interactiveModel>
+
+<!--<offline>
+|确定maven在执行构建时是否应该尝试连接到网络。
+|这将对工件下载、工件部署等产生影响。
+|
+|默认值:false
+| -->
+<offline>false</offline>
+
+<!--pluginGroups
+|是一个插件的组标识符列表，这些标识符将在通过前缀解析插件时被搜索。
+|也就是在调用"mvn prefix:goal"这样的命令行时。Maven将自动添加组标识符
+|"org.apache.maven"和"org.codehaus.mojo"。如果列表中还没有这些内容的话。
+| -->
+<pluginGroups>
+<!--pluginGroup
+|指定用于插件查找的进一步组标识符。
+|< pluginGroup > com.your.plugins < / pluginGroup >
+| -->
+</pluginGroups>
+
+<!--proxies
+|这是一个可以在这台机器上连接到网络的代理列表。
+|除非另有指定(通过系统属性或命令行开关)，否则第一个代理
+|将使用此列表中标记为活动的|规范。
+| -->
+<proxies>
+<!-- proxy
+ | 同于一个连接到网络的代理规范
+ |
+	<proxy>
+		<id>optionala</id>
+		<active>true</active>
+		<protocol>http</protocol>
+		<username>proxyuser</username>
+		<password>proxypass</password>
+		<host>proxy.host.net</host>
+		<port>80</port>
+		<nonProxyHosts>local.net|some.host.com</nonProxyHosts>
+	</proxy> 
+-->
+</proxies>
+
+<!-- servers
+这是一个身份验证配置文件列表，由系统中使用的服务器id键入。
+只要maven必须连接到远程仓库，就可以使用此身份验证概要文件。
+-->
+<servers>
+	<!--server
+	|指定连接到特定远程服务器时要使用的身份验证信息，由
+	|系统中的唯一名称(由下面的“id”属性引用)。
+	|
+	|注意:您应该指定用户名/密码或privateKey/passphrase，因为这些对是
+	|一起使用。
+	|
+	<server>
+		<id>deploymentRepo</id>
+		<username>repouser</username>
+		<password>repopwd</password>
+	</server>
+	-->
+	<!-- 另一个范例, 利用key去权鉴.
+    <server>
+      <id>siteServer</id>
+      <privateKey>/path/to/private/key</privateKey>
+      <passphrase>optional; leave empty if not used.</passphrase>
+    </server>
+    -->
+</servers>
+
+<!--mirrors
+|这是一个镜像列表，用于从远程存储库下载工件。
+|
+|它会覆盖<repository>id与<mirrorOf>值相同的的远程仓库配置
+|它是这样工作的:POM可以声明一个远程仓库来解决某些工件。
+|然而，这个远程仓库有时可能遇到流量大的访问慢问题，所以人们已经制作了镜像
+|把他存储好几个地方。
+|
+|远程仓库会定义唯一的id，因此我们可以为此创建一个镜像引用到那个
+|远程仓库，用作备用下载站点。镜像站点将是连接到那个远程仓库的首选站点
+|  -->
+<mirrors>
+<!-- 	
+	|指定要使用的远程仓库镜像站点，替代访问原先的远程操控
+	|这个被代替的远程仓库的ID必须与这个镜像的mirrorOf元素匹配。ID们用于
+	|对于关系继承和直接查找目的，故必须在镜像列表之间是唯一的。
+	|
+	<mirror>
+		<id>mirrorId</id>
+		<mirrorOf>repositoryId</mirrorOf>
+		<name>Human Readable Name for this Mirror.</name>
+		<url>http://my.repository.com/repo/path</url>
+	</mirror> -->
+</mirrors>
+
+<!-- profiles
+这是一个配置文件列表，可以以各种方式激活，也可以修改构建过程。
+setting.xml中提供的配置项旨在提供本地机器-
+当允许构建在本地环境中时，工作的特定路径和存储库位置。
+例如，如果您有一个集成测试插件(比如cactus)，它需要知道在哪里
+安装了Tomcat实例后，您可以在这里提供一个变量，以便该变量
+在构建过程中被引用以配置cactus插件。
+  
+如上所述，配置文件可以以多种方式激活。一种方式——activeProfiles
+这个文档的一部分(settings.xml)将在后面讨论。另一种方法是
+依赖于系统属性的检测，或者匹配属性的特定值，
+或者仅仅是测试它的存在。JDK版本前缀也可以激活概要文件，
+其中值'1.4'可能在JDK版本'1.4.2_07'上执行构建时激活概要文件。
+最后，可以直接从命令行指定活动概要文件列表。
+  
+注意:对于设置中定义的setting.xml中，
+您只能指定工件存储库、插件存储库和自由形式的属性作为POM中插件的配置变量。 
+-->
+<profiles>
+<!-- profile
+	指定一组对构建过程的介绍，他们将使用
+	上面描述的机制。为达到继承目的，并通过<activatedProfiles>激活概要片段
+	或者命令行，故概要片段必须有唯一的ID。
+   
+	推荐的概要片段标识的最佳实践是使用一致的命名约定
+	如“env-dev”、“env-test”、“env-production”、“user-jdcasey”、“user-brett”等。
+	这将使您更直观地理解概要片段集所试图表达的内容
+	特别是当您只有一个用于调试的概要片段id列表时。
+   
+	这个概要片段示例使用JDK版本触发激活，并提供特定的JDK仓库地址。
+	<profile>
+		<id>jdk-1.4</id>
+
+		<activation>
+			<jdk>1.4</jdk>
+		</activation>
+
+		<repositories>
+			<repository>
+				<id>jdk14</id>
+				<name>Repository for JDK 1.4 builds</name>
+				<url>http://www.myhost.com/maven/jdk14</url>
+				<layout>default</layout>
+				<snapshotPolicy>always</snapshotPolicy>
+			</repository>
+		</repositories>
+	</profile> -->
+
+<!-- 
+	这是另一个配置文件，由系统属性“target-env”激活，值为“dev”，
+	它提供了到Tomcat实例的特定路径。要使用它，您的插件配置
+	可能假设如下:
+	<profile>
+	  <id>env-dev</id>
+
+	  <activation>
+	    <property>
+	      <name>target-env</name>
+	      <value>dev</value>
+	    </property>
+	  </activation>
+
+	  <properties>
+	    <tomcatPath>/path/to/tomcat/instance</tomcatPath>
+	  </properties>
+	</profile>
+	注意:如果您只是想在有人将“target-env”设置为任何值时注入这个配置，那么您可以只关闭activ-property的内部。 
+-->
+</profiles>
+
+<!-- 列出对所有构建对象都生效的概要片段
+<activatedProfiles>
+	<activatedProfile>alwaysActiveProfile</activatedProfile>
+	<activatedProfile>anotherAlwaysActiveProfile</activatedProfile>
+</activatedProfiles> -->
+
+</settings>
