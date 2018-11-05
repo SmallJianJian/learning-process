@@ -1,18 +1,152 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.chenj</groupId>
-  <artifactId>maven-test</artifactId>
-  <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <name>maven-test</name>
-  <url>http://maven.apache.org</url>
-
+  <!--被继承的父项目的坐标。如果项目中没有规定某个元素的值，那么父项目中的对应值即为项目的默认值。 坐标包括group ID，artifact ID和 version。-->
   <parent>
-    <groupId>com.maidao</groupId>
-    <artifactId>maidao-framework-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <!--父工程的组织标识符-->
+    <groupId>org.springframework.boot</groupId>
+    <!--父工程的构建标识符-->
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <!--父工程的版本-->
+    <version>2.0.0.RELEASE</version>
+    <!-- 父项目的pom.xml文件的相对路径。相对路径允许你选择一个不同的路径。默认值是../pom.xml。
+    Maven首先在构建当前项目的地方寻找父项目的pom，其次在文件系统的这个位置（relativePath位置），然后在本地仓库，最后在远程仓库寻找父项目的pom。-->
+    <relativePath/>
   </parent>
+
+  <!--声明项目描述符遵循哪一个POM模型版本。模型本身的版本很少改变，
+  虽然如此，但它仍然是必不可少的，这是为了当Maven引入了新的特性或者其他模型变更的时候，确保稳定性。-->
+  <modelVersion>4.0.0</modelVersion>
+  <!--项目的全球唯一标识符，通常使用全限定的包名区分该项目和其他项目。
+  并且构建时生成的路径也是由此生成， 如com.chenj生成的相对路径为：/com/chenj-->
+  <groupId>com.chenj</groupId>
+  <!-- 构件的标识符，它和group ID一起唯一标识一个构件。
+  换句话说，你不能有两个不同的项目拥有同样的artifact ID和groupID；在某个 特定的group ID下，artifact ID也必须是唯一的。
+  构件是项目产生的或使用的一个东西，Maven为项目产生的构件(打包类型)包括：JARs，源码，二进制发布和WARs等。-->
+  <artifactId>maven-test</artifactId>
+  <!--项目产生的构件类型，例如jar、war、ear、pom。插件可以创建他们自己的构件类型，所以前面列的不是全部构件类型-->
+  <packaging>war</packaging>
+  <!--项目当前版本，格式为:主版本.次版本.增量版本-限定版本号-->
+  <version>1.0-SNAPSHOT</version>
+  <!--项目的名称, Maven产生的文档用-->
+  <name>maven-test</name>
+  <!--项目主页的URL, Maven产生的文档用-->
+  <url>http://maven.apache.org</url>
+  <!-- 项目的详细描述, Maven 产生的文档用-->
+  <description>A maven project to study maven.</description>
+
+  <!--描述了这个项目构建环境中的前提条件。-->
+  <prerequisites>
+    <!--构建该项目或使用该插件所需要的Maven的最低版本-->
+    <maven></maven>
+  </prerequisites>
+
+  <!--项目的问题管理系统(Bugzilla, Jira, Scarab,或任何你喜欢的问题管理系统)的名称和URL，本例为 jira-->
+  <issueManagement>
+    <!--问题管理系统（例如jira）的名字，-->
+    <system>jira</system>
+    <!--该项目使用的问题管理系统的URL-->
+    <url>http://jira.baidu.com/banseon</url>
+  </issueManagement>
+
+  <!--项目持续集成信息-->
+  <ciManagement>
+    <!--持续集成系统的名字，例如continuum-->
+    <system></system>
+    <!--该项目使用的持续集成系统的URL（如果持续集成系统有web接口的话）。-->
+    <url></url>
+    <!--构建完成时，需要通知的开发者/用户的配置项。包括被通知者信息和通知条件（错误，失败，成功，警告）-->
+    <notifiers>
+      <!--配置一种方式，当构建中断时，以该方式通知用户/开发者-->
+      <notifier>
+        <!--传送通知的途径-->
+        <type></type>
+        <!--发生错误时是否通知-->
+        <sendOnError>true</sendOnError>
+        <!--发生失败时是否通知-->
+        <sendOnFailure>false</sendOnFailure>
+        <!--发生成功时是否通知-->
+        <sendOnSuccess>false</sendOnSuccess>
+        <!--发生警告时是否通知-->
+        <sendOnWarning>false</sendOnWarning>
+        <!--通知发送到哪里-->
+        <address></address>
+        <!--扩展配置项-->
+        <configuration/>
+      </notifier>
+    </notifiers>
+  </ciManagement>
+
+  <!--项目创建年份，4位数字。当产生版权信息时需要使用这个值。-->
+  <inceptionYear></inceptionYear>
+  <!--项目相关邮件列表信息-->
+  <mailingLists>
+    <!--该元素描述了项目相关的所有邮件列表。自动产生的网站引用这些信息-->
+    <mailingList>
+      <!--邮件的名称-->
+      <name>Demo</name>
+      <!--发送邮件的地址或链接，如果是邮件地址，创建文档时，mailto: 链接会被自动创建-->
+      <post>544571308@qq.com</post>
+      <!--订阅邮件的地址或链接，如果是邮件地址，创建文档时，mailto: 链接会被自动创建-->
+      <subscribe>544571308@qq.com</subscribe>
+      <!--取消订阅邮件的地址或链接，如果是邮件地址，创建文档时，mailto: 链接会被自动创建-->
+      <unsubscribe>544571308@qq.com</unsubscribe>
+      <!--你可以浏览邮件信息的URL-->
+      <archive></archive>
+    </mailingList>
+  </mailingLists>
+
+  <!--项目开发者列表-->
+  <developers>
+    <!--某个项目开发者的信息-->
+    <developer>
+      <!--SCM里项目开发者的唯一标识符-->
+      <id>HELLO MAVEN</id>
+      <!--项目开发者的全名-->
+      <name>JiuZhang</name>
+      <!--项目开发者的email-->
+      <email>chen7870098@163.com</email>
+      <!--项目开发者的主页的URL-->
+      <url></url>
+      <!--项目开发者在项目中扮演的角色，角色元素描述了各种角色-->
+      <roles>
+        <role>Architect</role>
+      </roles>
+      <!--项目开发者所属组织-->
+      <organization>com.maidao</organization>
+      <!--项目开发者所属组织的URL-->
+      <organizationUrl></organizationUrl>
+      <!--项目开发者属性，如即时消息如何处理等-->
+      <properties>
+        <dept>No</dept>
+      </properties>
+      <!--项目开发者所在时区， -11到12范围内的整数。-->
+      <timezone>8</timezone>
+    </developer>
+  </developers>
+
+  <!--项目的其他贡献者列表-->
+  <contributors>
+    <!--项目的其他贡献者。参见developers/developer元素-->
+    <contributor></contributor>
+  </contributors>
+
+  <!--该元素描述了项目所有License列表。 应该只列出该项目的license列表，不要列出依赖项目的 license列表。
+  如果列出多个license，用户可以选择它们中的一个而不是接受所有license。-->
+  <licenses>
+    <!--描述了项目的license，用于生成项目的web站点的license页面，其他一些报表和validation也会用到该元素。-->
+    <license>
+      <!--license用于法律上的名称-->
+      <name>Apache 2</name>
+      <!--官方的license正文页面的URL-->
+      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+      <!--项目分发的主要方式：
+          repo，可以从Maven库下载
+          manual， 用户必须手动下载和安装依赖-->
+      <distribution>repo</distribution>
+      <!--关于license的补充信息-->
+      <comments>A business-friendly OSS license</comments>
+    </license>
+  </licenses>
 
   <properties>
     <skipTests>true</skipTests>
