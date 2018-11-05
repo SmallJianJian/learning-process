@@ -1,11 +1,4 @@
-/target/
-*/work/
-*/bin/
-.settings
-.classpath
-.project
-.tomcatplugin
-*.jar
-*XX.java
-.idea/*
+target
 *.iml
+.idea
+*.log
