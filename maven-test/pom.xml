@@ -170,9 +170,13 @@
 
   <build>
     <finalName>maven-test</finalName>
+    <!--这个元素描述了项目相关的所有资源路径列表，例如和项目相关的属性文件，这些资源被包含在最终的打包文件里。-->
     <resources>
+      <!--这个元素描述了项目相关或测试相关的所有资源路径-->
       <resource>
+        <!--存放资源的目录，该路径相对于POM路径-->
         <directory>src/main/java</directory>
+        <!--包含的模式列表，例如**/*.xml.-->
         <includes>
           <include>**/*.xml</include>
         </includes>
@@ -184,6 +188,7 @@
         </includes>
       </resource>
     </resources>
+
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
