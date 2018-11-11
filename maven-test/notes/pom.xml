@@ -307,4 +307,86 @@
         </plugins>
     </pluginManagement>
   </build>
+
+  <!--在列的项目构建profile，如果被激活，会修改构建处理-->
+  <profiles>
+    <!--根据环境参数或命令行参数激活某个构建处理-->
+    <profile>
+      <!--构建配置的唯一标识符。即用于命令行激活，也用于在继承时合并具有相同标识符的profile。-->
+      <id>id</id>
+      <!--自动触发profile的条件逻辑。Activation是profile的开启钥匙。profile的力量来自于它
+        能够在某些特定的环境中自动使用某些特定的值；这些环境通过activation元素指定。
+        activation元素并不是激活profile的唯一方式。-->
+      <activation>
+        <!--profile默认是否激活的标志-->
+        <activeByDefault>false</activeByDefault>
+        <!--当匹配的jdk被检测到，profile被激活。例如，1.4激活JDK1.4，1.4.0_2，而!1.4激活所有版本不是以1.4开头的JDK。-->
+        <jdk>1.4</jdk>
+        <!--当匹配的操作系统属性被检测到，profile被激活。os元素可以定义一些操作系统相关的属性。-->
+        <os>
+          <!--激活profile的操作系统的名字-->
+          <name>Windows XP</name>
+          <!--激活profile的操作系统所属家族(如 'windows')-->
+          <family>Windows</family>
+          <!--激活profile的操作系统体系结构 -->
+          <arch>x86</arch>
+          <!--激活profile的操作系统版本-->
+          <version>5.1.2600</version>
+        </os>
+        <!--如果Maven检测到某一个属性（其值可以在POM中通过${名称}引用），其拥有对应的名称和值，Profile就会被激活。
+        如果值字段是空的，那么存在属性名称字段就会激活profile，否则按区分大小写方式匹配属性值字段-->
+        <property>
+          <!--激活profile的属性的名称-->
+          <name></name>
+          <!--激活profile的属性的值-->
+          <value></value>
+        </property>
+        <!--提供一个文件名，通过检测该文件的存在或不存在来激活profile。missing检查文件是否存在，如果不存在则激活profile。
+        另一方面，exists则会检查文件是否存在，如果存在则激活profile。-->
+        <file>
+          <!--如果指定的文件存在，则激活profile。-->
+          <exists></exists>
+          <!--如果指定的文件不存在，则激活profile。-->
+          <missing></missing>
+        </file>
+      </activation>
+      <!--构建项目所需要的信息。参见build元素-->
+      <build></build>
+      <!--模块（有时称作子项目） 被构建成项目的一部分。列出的每个模块元素是指向该模块的目录的相对路径-->
+      <modules>
+        <module></module>
+      </modules>
+      <!--发现依赖和扩展的远程仓库列表。-->
+      <repositories>
+        <!--包含需要连接到远程仓库的信息-->
+        <repository>
+          <!--远程仓库唯一标识符。可以用来匹配在settings.xml文件里配置的远程仓库-->
+          <id>banseon-repository-proxy</id>
+          <!--远程仓库名称-->
+          <name>banseon-repository-proxy</name>
+          <!--远程仓库URL，按protocol://hostname/path形式-->
+          <url>http://192.168.1.169:9999/repository/</url>
+          <!--如何处理远程仓库里发布版本的下载-->
+          <releases>
+            <!--true或者false表示该仓库是否为下载某种类型构件（发布版，快照版）开启。 -->
+            <enabled>false</enabled>
+            <!--该元素指定更新发生的频率。Maven会比较本地POM和远程POM的时间戳。
+            这里的选项是：always（一直），daily（默认，每日），interval：X（这里X是以分钟为单位的时间间隔），或者never（从不）。-->
+            <updatePolicy>daily</updatePolicy>
+            <checksumPolicy>warn</checksumPolicy>
+          </releases>
+          <!-- 如何处理远程仓库里快照版本的下载。有了releases和snapshots这两组配置，POM就可以在每个单独的仓库中，为每种类型的构件采取不同的 策略。例如，
+          可能有人会决定只为开发目的开启对快照版本下载的支持。参见repositories/repository/releases元素 -->
+          <snapshots>
+            <enabled>true</enabled>
+            <checksumPolicy>warn</checksumPolicy>
+            <updatePolicy>daily</updatePolicy>
+          </snapshots>
+          <!-- 用于定位和排序构件的仓库布局类型-可以是default（默认）或者legacy（遗留）。
+          Maven 2为其仓库提供了一个默认的布局；然 而，Maven 1.x有一种不同的布局。我们可以使用该元素指定布局是default（默认）还是legacy（遗留）。-->
+          <layout>default</layout>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
 </project>
